@@ -41,5 +41,10 @@ workflows:
   release:
     jobs:
       - do-build
-      - do-package
-      - do-gh-release
+      - do-package:
+          requires:
+            - do-build
+      - do-gh-release:
+          requires:
+            - do-build
+            - do-package
