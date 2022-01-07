@@ -25,6 +25,7 @@ jobs:
     docker:
       - image: rust:latest
     steps:
+      - checkout
       - attach_workspace:
           at: ./
       - run:
@@ -39,6 +40,7 @@ jobs:
     docker:
       - image: cibuilds/github:latest
     steps:
+      - checkout
       - attach_workspace:
           at: ./
       - run:
