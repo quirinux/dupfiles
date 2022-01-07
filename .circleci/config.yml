@@ -68,9 +68,21 @@ workflows:
             tags:
               only: /^v\d+\.\d+\.\d+$/
       - do-package:
+          filters:
+            branches: 
+              only:
+                - main
+            tags:
+              only: /^v\d+\.\d+\.\d+$/
           requires:
             - do-build-linux-x86_64
       - do-gh-release:
+          filters:
+            branches: 
+              only:
+                - main
+            tags:
+              only: /^v\d+\.\d+\.\d+$/
           requires:
             - do-build-linux-x86_64
             - do-package
