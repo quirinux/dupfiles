@@ -64,7 +64,7 @@ workflows:
       - do-package:
           requires:
             - do-build-linux-x86_64
-       - do-gh-release:
-           requires:
-             - do-build-linux-x86_64
-             - do-package
+      - do-gh-release:
+          requires:
+            - do-build-linux-x86_64
+            - do-package
