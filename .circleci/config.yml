@@ -15,8 +15,11 @@ jobs:
     steps:
       - checkout
       - run:
+        name: getting version tag
+        command: "VERSION=$(cat Cargo.toml | grep version | head -1 | cut -d\" -f2)"
+      - run:
           name: "Say hello"
-          command: "echo Hello, World!"
+          command: "echo Hello, World! => $VERSION"
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
