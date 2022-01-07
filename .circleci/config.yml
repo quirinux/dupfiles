@@ -60,7 +60,11 @@ jobs:
 workflows:
   release:
     jobs:
-      - do-build-linux-x86_64
+      - do-build-linux-x86_64:
+          filters:
+            branches: main
+            tags:
+              only: /^v\d+\.\d+\.\d+$/
       - do-package:
           requires:
             - do-build-linux-x86_64
