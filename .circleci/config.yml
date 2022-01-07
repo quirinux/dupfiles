@@ -60,29 +60,11 @@ jobs:
 workflows:
   release:
     jobs:
-      - do-build-linux-x86_64:
-          filters:
-            branches: 
-              only:
-                - main
-            tags:
-              only: /^v\d+\.\d+\.\d+$/
+      - do-build-linux-x86_64
       - do-package:
-          filters:
-            branches: 
-              only:
-                - main
-            tags:
-              only: /^v\d+\.\d+\.\d+$/
           requires:
             - do-build-linux-x86_64
-      - do-gh-release:
-          filters:
-            branches: 
-              only:
-                - main
-            tags:
-              only: /^v\d+\.\d+\.\d+$/
-          requires:
-            - do-build-linux-x86_64
-            - do-package
+       - do-gh-release:
+           requires:
+             - do-build-linux-x86_64
+             - do-package
