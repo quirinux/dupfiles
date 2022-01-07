@@ -21,3 +21,6 @@ package:
 
 clean:
 	rm -rdf $(RUBISH)
+
+version:
+	@echo $(VERSION)
