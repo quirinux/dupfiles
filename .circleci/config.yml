@@ -19,7 +19,7 @@ jobs:
           command: make build-release
       - run:
           name: packaging
-          command: make package
+          command: make package TARGET=release 
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
