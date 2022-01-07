@@ -21,6 +21,7 @@ jobs:
           root: .
           paths:
             - target/*
+
   do-package:
     docker:
       - image: rust:latest
@@ -31,10 +32,14 @@ jobs:
       - run:
           name: packaging
           command: make package TARGET=release 
+      - run:
+          name: saving version
+          command: make version > .version
       - persist_to_workspace:
           root: .
           paths:
             - package/*
+            - .version
               
   do-gh-release:
     docker:
@@ -46,7 +51,7 @@ jobs:
       - run:
           name: publishing
           command: |
-            VERSION=$(make version)
+            VERSION=$(cat .version)
             ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ./package
 
 # Invoke jobs via workflows
