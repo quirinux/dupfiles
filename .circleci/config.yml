@@ -17,11 +17,16 @@ jobs:
       - run:
           name: building
           command: make build-release
+      - persist_to_workspace:
+          root: .
+          paths:
+            - package/*
   do-package:
     docker:
       - image: rust:latest
     steps:
-      - checkout
+      - attach_workspace:
+          at: ./
       - run:
           name: packaging
           command: make package TARGET=release 
@@ -30,7 +35,8 @@ jobs:
     docker:
       - image: cibuilds/github:latest
     steps:
-      - checkout
+      - attach_workspace:
+          at: ./
       - run:
           name: publishing
           command: |
