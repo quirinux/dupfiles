@@ -19,7 +19,7 @@ jobs:
           command: make build-release
   do-package:
     docker:
-      - image: debian:latest
+      - image: rust:latest
     steps:
       - run:
           name: packaging
