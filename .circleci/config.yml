@@ -20,7 +20,7 @@ jobs:
       - persist_to_workspace:
           root: .
           paths:
-            - package/*
+            - target/*
   do-package:
     docker:
       - image: rust:latest
@@ -30,7 +30,11 @@ jobs:
       - run:
           name: packaging
           command: make package TARGET=release 
-
+      - persist_to_workspace:
+          root: .
+          paths:
+            - package/*
+              
   do-gh-release:
     docker:
       - image: cibuilds/github:latest
