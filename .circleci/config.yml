@@ -48,6 +48,7 @@ jobs:
       - checkout
       - attach_workspace:
           at: ./
+      - run: cat .version
       - run:
           name: publishing
           command: |
