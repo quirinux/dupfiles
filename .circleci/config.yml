@@ -15,11 +15,11 @@ jobs:
     steps:
       - checkout
       - run:
-        name: building
-        command: make build-release
+          name: building
+          command: make build-release
       - run:
-        name: packaging
-        command: make package
+          name: packaging
+          command: make package
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
