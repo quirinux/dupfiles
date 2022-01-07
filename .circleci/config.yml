@@ -40,6 +40,6 @@ jobs:
 workflows:
   release:
     jobs:
-      - do-release
+      - do-build
       - do-package
       - do-gh-release
