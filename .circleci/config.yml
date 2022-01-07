@@ -21,6 +21,7 @@ jobs:
     docker:
       - image: rust:latest
     steps:
+      - checkout
       - run:
           name: packaging
           command: make package TARGET=release 
@@ -29,6 +30,7 @@ jobs:
     docker:
       - image: cibuilds/github:latest
     steps:
+      - checkout
       - run:
           name: publishing
           command: |
