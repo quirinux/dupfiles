@@ -2,7 +2,7 @@ VERSION := $(shell cat Cargo.toml | grep version | head -1 | cut -d\" -f2 | xarg
 CARGOFLAGS :=
 TARGET := debug
 OUTFILES := $(shell cat Cargo.toml | grep name | head -1 | cut -d\" -f2 | xargs)
-RUBISH := $(wildcard package/*) $(wildcard target*/*)
+RUBISH := package target
 ARCH := linux-x86_64
 .PHONY: package
 
@@ -18,7 +18,7 @@ build-release:
 
 package:
 	mkdir -p package
-	tar -czvf package/dupfile-$(VERSION)-$(ARCH).tgz target/$(TARGET)/$(OUTFILES)
+	tar -czvf package/dupfile-$(VERSION)-$(ARCH).tgz -C target/$(TARGET) $(OUTFILES) 
 
 clean:
 	rm -rdf $(RUBISH)
